@@ -3,13 +3,19 @@ package main
 import "fmt"
 
 func main()  {
-	fmt.Println("Go" + "lang")
+	var a = "inital"
+	fmt.Println(a)
 
-	fmt.Println("1 + 1 =", 1 + 1)
+	var b, c int = 1, 2
+	fmt.Println(b, c)
 
-	fmt.Println("7.0/3.0 =", 7.0/3.0)
+	var d = true
+	fmt.Println(d)
 
-	fmt.Println(true && false)
-	fmt.Println(true || false)
-	fmt.Println(!true)
+	var e int
+	fmt.Println(e)
+
+	f := "apple"
+	fmt.Println(f)
+	
 }
