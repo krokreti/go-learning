@@ -23,25 +23,33 @@ func main() {
     fmt.Println("set:", s)
     fmt.Println("get:", s[2])
 
+	//len returns the length of the slice as expected.
     fmt.Println("len:", len(s))
 
+	// slices support several more that make them richer than arrays
+	// append returns a slice containing one or more new values
     s = append(s, "d")
     s = append(s, "e", "f")
     fmt.Println("apd:", s)
 
+	//slices can also be copy'd. we create an empty slice c of the same length as s and copy into c from s.
     c := make([]string, len(s))
     copy(c, s)
     fmt.Println("cpy:", c)
 
+	//slices supports a "slice" operator with de syntax slice[low:high]. this gets a slice of the elements s[2], s[3] and s[4]
     l := s[2:5]
     fmt.Println("sl1:", l)
 
+	//slice returns but excluding s[5]
     l = s[:5]
     fmt.Println("sl2:", l)
 
+	// and this slices up from (and including) s[2].
     l = s[2:]
     fmt.Println("sl3:", l)
 
+	// we can declare and initialize a variable for slice in a single line as well
     t := []string{"g", "h", "i"}
     fmt.Println("dcl:", t)
 
