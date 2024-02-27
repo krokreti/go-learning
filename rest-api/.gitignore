@@ -1,0 +1,36 @@
+# Arquivos compilados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Arquivos de compilação
+*.o
+*.obj
+
+# Arquivos de ambiente
+*.env
+
+# Diretório de dependências
+/bin/
+/pkg/
+/vendor/
+
+# Arquivos de log
+*.log
+
+# Arquivos de configuração
+*.yaml
+*.yml
+
+# Arquivos de configuração específicos do editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de cache e lixo
+.cache/
+.bak/
+.tmp/
