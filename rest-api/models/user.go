@@ -1,6 +1,11 @@
 package models
 
-import "example.com/rest-api/db"
+import (
+	"errors"
+
+	"example.com/rest-api/db"
+	"example.com/rest-api/utils"
+)
 
 type User struct {
 	ID int64
@@ -19,7 +24,13 @@ func (user User) Save() error {
 
 	defer stmt.Close()
 
-	result, err := stmt.Exec(user.Email, user.Password)
+	hashedPassword, err := utils.HashPassword(user.Password)
+
+	if err != nil {
+		return err
+	}
+
+	result, err := stmt.Exec(user.Email, hashedPassword)
 
 	if err != nil {
 		return err
@@ -29,4 +40,24 @@ func (user User) Save() error {
 
 	user.ID = userId
 	return err
+}
+
+func (u *User) ValidateCredentials() error {
+	query := "SELECT id, password FROM users WHERE email = ?"
+	row := db.DB.QueryRow(query, u.Email)
+
+	var retrievedPassword string
+	err := row.Scan(&u.ID, &retrievedPassword)
+
+	if err != nil {
+		return errors.New("Credentials Invalid!")
+	}
+
+	passwordIsValid := utils.CheckPasswordHash(u.Password,  retrievedPassword)
+
+	if !passwordIsValid {
+		return errors.New("Credentials Invalid!")
+	}
+
+	return nil
 }
